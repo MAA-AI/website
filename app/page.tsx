@@ -341,7 +341,6 @@ export default function Home() {
             <div className="flex items-center gap-6 text-sm text-foreground/60">
               <a href="https://github.com/MaaXYZ/MaaMCP" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
               <a href="https://github.com/MaaXYZ/MaaMCP#readme" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t.footer.documentation}</a>
-              <span>maa-ai.com</span>
               <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">京ICP备XXXXXXXX号-1</a>
             </div>
             <p className="text-sm text-foreground/40">{t.footer.copyright}</p>
