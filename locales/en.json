@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "features": "Features",
+    "demo": "Demo",
+    "github": "GitHub"
+  },
+  "hero": {
+    "badge": "Powered by MCP Protocol",
+    "title": "Control Your Devices",
+    "titleHighlight": "With Natural Language",
+    "description": "MaaAI is an intelligent AI agent that understands your commands and automates Windows and Android device operations. Just describe what you want to do.",
+    "getStarted": "Get Started",
+    "seeDemo": "See Demo"
+  },
+  "features": {
+    "title": "Powerful Capabilities",
+    "description": "Built on the Model Context Protocol, MaaAI provides seamless device control through intelligent automation.",
+    "naturalLanguage": {
+      "title": "Natural Language Control",
+      "description": "Simply describe what you want to do. MaaAI understands your intent and executes complex operations automatically."
+    },
+    "windows": {
+      "title": "Windows Automation",
+      "description": "Control desktop applications, manage files, automate workflows, and interact with any Windows software."
+    },
+    "android": {
+      "title": "Android Control",
+      "description": "Automate mobile apps, perform UI interactions, and manage Android devices remotely with ease."
+    },
+    "recognition": {
+      "title": "Intelligent Recognition",
+      "description": "Advanced screen recognition and understanding. MaaAI sees and comprehends your device interface."
+    }
+  },
+  "demo": {
+    "title": "Try It Yourself",
+    "description": "See how natural language commands translate to device actions.",
+    "placeholder": "Type a command... e.g., 'Open Calculator'",
+    "execute": "Execute",
+    "examples": "Example commands:"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "description": "MaaAI leverages the Model Context Protocol to bridge AI understanding with device control.",
+    "step1": {
+      "title": "Describe Your Intent",
+      "description": "Use natural language to describe what you want to accomplish on your device."
+    },
+    "step2": {
+      "title": "AI Understands",
+      "description": "MaaAI analyzes your command, recognizes the screen, and plans the execution steps."
+    },
+    "step3": {
+      "title": "Automated Execution",
+      "description": "The agent performs the actions on your Windows or Android device automatically."
+    }
+  },
+  "cta": {
+    "title": "Ready to Get Started?",
+    "description": "MaaAI is open source and built on the MCP protocol. Join our community and start automating your devices today.",
+    "viewGithub": "View on GitHub",
+    "readDocs": "Read Documentation"
+  },
+  "footer": {
+    "documentation": "Documentation",
+    "copyright": "© 2025 MaaAI. Open Source Project."
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "features": "功能特性",
+    "demo": "演示",
+    "github": "GitHub"
+  },
+  "hero": {
+    "badge": "基于 MCP 协议",
+    "title": "用自然语言",
+    "titleHighlight": "控制你的设备",
+    "description": "MaaAI 是一个智能 AI Agent，能够理解你的指令并自动化操作 Windows 和 Android 设备。只需描述你想做什么。",
+    "getStarted": "开始使用",
+    "seeDemo": "查看演示"
+  },
+  "features": {
+    "title": "强大功能",
+    "description": "基于 Model Context Protocol 构建，MaaAI 通过智能自动化提供无缝的设备控制体验。",
+    "naturalLanguage": {
+      "title": "自然语言控制",
+      "description": "只需描述你想做什么，MaaAI 理解你的意图并自动执行复杂操作。"
+    },
+    "windows": {
+      "title": "Windows 自动化",
+      "description": "控制桌面应用、管理文件、自动化工作流程，与任何 Windows 软件交互。"
+    },
+    "android": {
+      "title": "Android 控制",
+      "description": "自动化移动应用、执行 UI 交互、轻松远程管理 Android 设备。"
+    },
+    "recognition": {
+      "title": "智能识别",
+      "description": "先进的屏幕识别和理解能力。MaaAI 能够看到并理解你的设备界面。"
+    }
+  },
+  "demo": {
+    "title": "亲自体验",
+    "description": "看看自然语言指令如何转化为设备操作。",
+    "placeholder": "输入指令... 例如：'打开计算器'",
+    "execute": "执行",
+    "examples": "示例指令："
+  },
+  "howItWorks": {
+    "title": "工作原理",
+    "description": "MaaAI 利用 Model Context Protocol 将 AI 理解与设备控制连接起来。",
+    "step1": {
+      "title": "描述你的意图",
+      "description": "使用自然语言描述你想在设备上完成的操作。"
+    },
+    "step2": {
+      "title": "AI 理解",
+      "description": "MaaAI 分析你的指令，识别屏幕内容，规划执行步骤。"
+    },
+    "step3": {
+      "title": "自动执行",
+      "description": "Agent 在你的 Windows 或 Android 设备上自动执行操作。"
+    }
+  },
+  "cta": {
+    "title": "准备好开始了吗？",
+    "description": "MaaAI 是开源项目，基于 MCP 协议构建。加入我们的社区，今天就开始自动化你的设备。",
+    "viewGithub": "在 GitHub 查看",
+    "readDocs": "阅读文档"
+  },
+  "footer": {
+    "documentation": "文档",
+    "copyright": "© 2025 MaaAI. 开源项目。"
+  }
+}
