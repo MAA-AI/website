@@ -32,5 +32,4 @@ pnpm run build
 ## 相关链接
 
 - [MaaMCP](https://github.com/MAA-AI/MaaMCP) - MaaAI 核心项目
-- [maa-ai.com](https://maa-ai.com) - 国内官网（备案中）
-- [maa-ai.top](https://maa-ai.top) - 海外官网
+- [maa-ai.com](https://maa-ai.com) - 官网
