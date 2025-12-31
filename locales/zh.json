@@ -10,7 +10,8 @@
     "titleHighlight": "控制你的设备",
     "description": "MaaAI 是一个智能 AI Agent，能够理解你的指令并自动化操作 Windows 和 Android 设备。只需描述你想做什么。",
     "getStarted": "开始使用",
-    "seeDemo": "查看演示"
+    "seeDemo": "查看演示",
+    "exchangeCdk": "兑换体验资格"
   },
   "features": {
     "title": "强大功能",
@@ -64,5 +65,31 @@
   "footer": {
     "documentation": "文档",
     "copyright": "© 2025 MaaAI. 开源项目。"
+  },
+  "exchange": {
+    "title": "兑换体验资格",
+    "description": "输入您的 CDK 激活码，将剩余有效期兑换为积分，获取新的体验资格。",
+    "cdkPlaceholder": "请输入 CDK 激活码",
+    "exchangeButton": "立即兑换",
+    "exchanging": "兑换中...",
+    "successTitle": "兑换成功！",
+    "newCdk": "新 CDK",
+    "points": "获得积分",
+    "remainingDays": "剩余天数",
+    "expiredAt": "到期时间",
+    "copySuccess": "复制成功！",
+    "copy": "复制",
+    "close": "关闭",
+    "backHome": "返回首页",
+    "errors": {
+      "emptyCdk": "请输入 CDK 激活码",
+      "invalidFormat": "CDK 格式无效",
+      "notFound": "订单未找到",
+      "alreadyExchanged": "该 CDK 已兑换过",
+      "expired": "CDK 已过期",
+      "tooShort": "剩余时间太短，无积分可兑换",
+      "serverError": "服务器错误，请稍后重试",
+      "networkError": "网络错误，请检查网络连接"
+    }
   }
 }
