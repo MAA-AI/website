@@ -220,12 +220,11 @@ export default function Home() {
             <p className="text-lg text-foreground/60 mb-10 max-w-2xl mx-auto">{t.hero.description}</p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://github.com/MaaXYZ/MaaMCP" target="_blank" rel="noopener noreferrer" className="btn-primary">{t.hero.getStarted}</a>
-              <a href="#demo" className="btn-secondary">{t.hero.seeDemo}</a>
-              <a href="/exchange" className="btn-secondary inline-flex items-center gap-2">
+              <a href="/exchange" className="btn-primary inline-flex items-center justify-center gap-2">
                 <GiftIcon />
                 {t.hero.exchangeCdk}
               </a>
+              <a href="#demo" className="btn-secondary">{t.hero.seeDemo}</a>
             </div>
           </div>
 
