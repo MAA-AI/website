@@ -80,11 +80,20 @@ function getSystemLocale(): Locale {
   return "en";
 }
 
+// 下载链接（待填写）
+const DOWNLOAD_URL = "";
+
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("en");
   const [theme, setTheme] = useState<Theme>("system");
   const [mounted, setMounted] = useState(false);
   const [command, setCommand] = useState("");
+  
+  // 演示模拟状态
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [simulationLines, setSimulationLines] = useState<Array<{ text: string; type: "info" | "warning" | "error" | "success" }>>([]);
+  const [currentTypingText, setCurrentTypingText] = useState("");
+  const [simulationComplete, setSimulationComplete] = useState(false);
 
   const t = locales[locale];
 
@@ -167,6 +176,76 @@ export default function Home() {
   } : {
     command: "Open Notepad and type \"Hello World\"",
     steps: ["Launching Notepad...", "Window detected: Untitled - Notepad", "Typing text: \"Hello World\"", "Task completed successfully"]
+  };
+
+  // 流式输出单行文字
+  const typeText = (text: string, onComplete: () => void) => {
+    let index = 0;
+    setCurrentTypingText("");
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setCurrentTypingText(text.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+        onComplete();
+      }
+    }, 30 + Math.random() * 20); // 随机延迟模拟真实打字效果
+    return interval;
+  };
+
+  // 执行演示模拟
+  const runSimulation = async (inputCommand: string) => {
+    if (!inputCommand.trim() || isSimulating) return;
+    
+    setIsSimulating(true);
+    setSimulationComplete(false);
+    setSimulationLines([]);
+    setCurrentTypingText("");
+
+    const sim = t.demo.simulation;
+    const steps: Array<{ text: string; type: "info" | "warning" | "error" | "success"; delay: number; instant?: boolean }> = [
+      { text: `> ${inputCommand}`, type: "info", delay: 300 },
+      { text: sim.analyzing, type: "info", delay: 800 },
+      { text: sim.initializing, type: "info", delay: 1000 },
+      { text: sim.connecting, type: "info", delay: 1200 },
+      { text: sim.browserDetected, type: "warning", delay: 400, instant: true },
+      { text: sim.limitation, type: "error", delay: 500, instant: true },
+      { text: sim.suggestion, type: "warning", delay: 400, instant: true },
+      { text: sim.download, type: "success", delay: 400, instant: true },
+      { text: sim.redirecting, type: "info", delay: 1500, instant: true },
+    ];
+
+    for (let i = 0; i < steps.length; i++) {
+      const step = steps[i];
+      
+      if (step.instant) {
+        // 直接显示整行
+        setSimulationLines(prev => [...prev, { text: step.text, type: step.type }]);
+      } else {
+        // 流式打字效果
+        await new Promise<void>((resolve) => {
+          typeText(step.text, () => {
+            setSimulationLines(prev => [...prev, { text: step.text, type: step.type }]);
+            setCurrentTypingText("");
+            resolve();
+          });
+        });
+      }
+      
+      // 每行之间的延迟
+      await new Promise(resolve => setTimeout(resolve, step.delay));
+    }
+
+    setSimulationComplete(true);
+    setIsSimulating(false);
+
+    // 自动跳转到下载页面
+    if (DOWNLOAD_URL) {
+      setTimeout(() => {
+        window.open(DOWNLOAD_URL, "_blank");
+      }, 1000);
+    }
   };
 
   if (!mounted) return null;
@@ -283,23 +362,116 @@ export default function Home() {
           </div>
           <div className="max-w-2xl mx-auto">
             <div className="gradient-border p-6">
+              {/* 输入区域 */}
               <div className="flex items-center gap-3 mb-6">
-                <input type="text" value={command} onChange={(e) => setCommand(e.target.value)} placeholder={t.demo.placeholder}
-                  className="flex-1 bg-surface-light border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-accent/50 transition-colors"/>
-                <button className="btn-primary whitespace-nowrap">{t.demo.execute}</button>
+                <input 
+                  type="text" 
+                  value={command} 
+                  onChange={(e) => setCommand(e.target.value)} 
+                  placeholder={t.demo.placeholder}
+                  disabled={isSimulating}
+                  onKeyDown={(e) => e.key === "Enter" && runSimulation(command)}
+                  className="flex-1 bg-surface-light border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-accent/50 transition-colors disabled:opacity-50"
+                />
+                <button 
+                  onClick={() => runSimulation(command)}
+                  disabled={isSimulating || !command.trim()}
+                  className="btn-primary whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSimulating ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                      </svg>
+                    </span>
+                  ) : t.demo.execute}
+                </button>
               </div>
-              <div className="space-y-3">
-                <p className="text-sm text-foreground/50 mb-3">{t.demo.examples}</p>
-                {useCases.map((useCase, index) => (
-                  <button key={index} onClick={() => setCommand(useCase.command)}
-                    className="w-full text-left p-3 rounded-lg bg-surface-light/50 hover:bg-surface-light border border-transparent hover:border-border transition-all group">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-foreground/80 group-hover:text-foreground transition-colors">{useCase.command}</span>
-                      <span className="text-xs px-2 py-1 rounded bg-accent/10 text-accent">{useCase.platform}</span>
+
+              {/* 模拟终端输出区域 */}
+              {(simulationLines.length > 0 || currentTypingText) && (
+                <div className="mb-6 bg-surface-light rounded-lg p-4 border border-border">
+                  <div className="flex items-center gap-2 mb-3 pb-3 border-b border-border/50">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    <span className="ml-2 text-xs text-foreground/40 font-mono">MaaAI Agent Console</span>
+                  </div>
+                  <div className="font-mono text-sm space-y-2">
+                    {simulationLines.map((line, index) => (
+                      <div 
+                        key={index} 
+                        className={`flex items-start gap-2 ${
+                          line.type === "error" ? "text-red-600 dark:text-red-400" :
+                          line.type === "warning" ? "text-amber-600 dark:text-amber-400" :
+                          line.type === "success" ? "text-emerald-600 dark:text-emerald-400" :
+                          "text-foreground/70"
+                        }`}
+                      >
+                        <span className="flex-shrink-0">
+                          {line.type === "error" ? "✗" :
+                           line.type === "warning" ? "⚠" :
+                           line.type === "success" ? "✓" :
+                           line.text.startsWith(">") ? "❯" : "→"}
+                        </span>
+                        <span>{line.text.startsWith(">") ? line.text.slice(2) : line.text}</span>
+                      </div>
+                    ))}
+                    {currentTypingText && (
+                      <div className="flex items-start gap-2 text-foreground/70">
+                        <span className="flex-shrink-0">→</span>
+                        <span>
+                          {currentTypingText}
+                          <span className="animate-pulse">▊</span>
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 完成后显示下载按钮 */}
+                  {simulationComplete && (
+                    <div className="mt-4 pt-4 border-t border-border/50">
+                      <a 
+                        href={DOWNLOAD_URL || "#"} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="btn-primary w-full text-center inline-flex items-center justify-center gap-2"
+                      >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="7 10 12 15 17 10"/>
+                          <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        {t.demo.simulation.downloadBtn}
+                      </a>
                     </div>
-                  </button>
-                ))}
-              </div>
+                  )}
+                </div>
+              )}
+
+              {/* 示例命令列表 */}
+              {!simulationLines.length && !currentTypingText && (
+                <div className="space-y-3">
+                  <p className="text-sm text-foreground/50 mb-3">{t.demo.examples}</p>
+                  {useCases.map((useCase, index) => (
+                    <button 
+                      key={index} 
+                      onClick={() => {
+                        setCommand(useCase.command);
+                        runSimulation(useCase.command);
+                      }}
+                      disabled={isSimulating}
+                      className="w-full text-left p-3 rounded-lg bg-surface-light/50 hover:bg-surface-light border border-transparent hover:border-border transition-all group disabled:opacity-50"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-foreground/80 group-hover:text-foreground transition-colors">{useCase.command}</span>
+                        <span className="text-xs px-2 py-1 rounded bg-accent/10 text-accent">{useCase.platform}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -38,7 +38,18 @@
     "description": "See how natural language commands translate to device actions.",
     "placeholder": "Type a command... e.g., 'Open Calculator'",
     "execute": "Execute",
-    "examples": "Example commands:"
+    "examples": "Example commands:",
+    "simulation": {
+      "analyzing": "Analyzing command content...",
+      "initializing": "Initializing MaaAI Agent core engine...",
+      "connecting": "Attempting to connect to local device control service...",
+      "browserDetected": "Detected: Currently running in Web browser environment",
+      "limitation": "Due to browser security sandbox restrictions, unable to access local device control interface",
+      "suggestion": "Full device automation capabilities require running in the desktop client environment",
+      "download": "Please download MaaAI Desktop Client for the complete experience",
+      "redirecting": "Opening download page for you...",
+      "downloadBtn": "Download Client Now"
+    }
   },
   "howItWorks": {
     "title": "How It Works",

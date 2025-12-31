@@ -38,7 +38,18 @@
     "description": "看看自然语言指令如何转化为设备操作。",
     "placeholder": "输入指令... 例如：'打开计算器'",
     "execute": "执行",
-    "examples": "示例指令："
+    "examples": "示例指令：",
+    "simulation": {
+      "analyzing": "正在分析指令内容...",
+      "initializing": "初始化 MaaAI Agent 核心引擎...",
+      "connecting": "尝试连接本地设备控制服务...",
+      "browserDetected": "检测到当前运行于 Web 浏览器环境",
+      "limitation": "由于浏览器安全沙箱限制，无法直接访问本地设备控制接口",
+      "suggestion": "完整的设备自动化功能需要在桌面客户端环境中运行",
+      "download": "建议下载 MaaAI 桌面客户端以获取完整体验",
+      "redirecting": "正在为您打开下载页面...",
+      "downloadBtn": "立即下载客户端"
+    }
   },
   "howItWorks": {
     "title": "工作原理",
