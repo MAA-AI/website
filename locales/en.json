@@ -10,7 +10,8 @@
     "titleHighlight": "With Natural Language",
     "description": "MaaAI is an intelligent AI agent that understands your commands and automates Windows and Android device operations. Just describe what you want to do.",
     "getStarted": "Get Started",
-    "seeDemo": "See Demo"
+    "seeDemo": "See Demo",
+    "exchangeCdk": "Exchange Trial Access"
   },
   "features": {
     "title": "Powerful Capabilities",
@@ -37,7 +38,18 @@
     "description": "See how natural language commands translate to device actions.",
     "placeholder": "Type a command... e.g., 'Open Calculator'",
     "execute": "Execute",
-    "examples": "Example commands:"
+    "examples": "Example commands:",
+    "simulation": {
+      "analyzing": "Analyzing command content...",
+      "initializing": "Initializing MaaAI Agent core engine...",
+      "connecting": "Attempting to connect to local device control service...",
+      "browserDetected": "Detected: Currently running in Web browser environment",
+      "limitation": "Due to browser security sandbox restrictions, unable to access local device control interface",
+      "suggestion": "Full device automation capabilities require running in the desktop client environment",
+      "download": "Please download MaaAI Desktop Client for the complete experience",
+      "redirecting": "Opening download page for you...",
+      "downloadBtn": "Download Client Now"
+    }
   },
   "howItWorks": {
     "title": "How It Works",
@@ -64,5 +76,31 @@
   "footer": {
     "documentation": "Documentation",
     "copyright": "© 2025 MaaAI. Open Source Project."
+  },
+  "exchange": {
+    "title": "Exchange Trial Access",
+    "description": "Enter your CDK activation code to exchange remaining validity for points and get new trial access.",
+    "cdkPlaceholder": "Enter CDK activation code",
+    "exchangeButton": "Exchange Now",
+    "exchanging": "Exchanging...",
+    "successTitle": "Exchange Successful!",
+    "newCdk": "New CDK",
+    "points": "Points Earned",
+    "remainingDays": "Remaining Days",
+    "expiredAt": "Expires At",
+    "copySuccess": "Copied!",
+    "copy": "Copy",
+    "close": "Close",
+    "backHome": "Back to Home",
+    "errors": {
+      "emptyCdk": "Please enter CDK activation code",
+      "invalidFormat": "Invalid CDK format",
+      "notFound": "Order not found",
+      "alreadyExchanged": "This CDK has already been exchanged",
+      "expired": "CDK has expired",
+      "tooShort": "Remaining time too short, no points to exchange",
+      "serverError": "Server error, please try again later",
+      "networkError": "Network error, please check your connection"
+    }
   }
 }
