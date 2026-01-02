@@ -1,11 +1,41 @@
-import type {NextConfig} from "next";
+import type { NextConfig } from "next";
+import dotenv from "dotenv";
 
-const isProd = process.env.NODE_ENV === "production";
+dotenv.config();
+
+const isProduction = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
-  // Enable standalone output for Docker deployment with RSC support
   output: "standalone",
-  basePath: "",
+  poweredByHeader: false,
+  compress: true,
+  compiler: {
+    removeConsole: isProduction,
+  },
+  async rewrites() {
+    // 开发环境下将 /api 请求代理到后端，避免跨域问题
+    if (!isProduction) {
+      return [
+        {
+          source: "/api/:path*",
+          destination: `${process.env.CLIENT_BACKEND}/api/:path*`,
+        },
+      ];
+    }
+    return [];
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import en from "../locales/en.json";
 import zh from "../locales/zh.json";
+import { MAA_AGENT_DOWNLOAD_URL } from "./requests/misc";
 
 type Locale = "en" | "zh";
 type Theme = "light" | "dark" | "system";
@@ -79,9 +80,6 @@ function getSystemLocale(): Locale {
   if (lang.startsWith("zh")) return "zh";
   return "en";
 }
-
-// 下载链接（待填写）
-const DOWNLOAD_URL = "";
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("en");
@@ -241,9 +239,9 @@ export default function Home() {
     setIsSimulating(false);
 
     // 自动跳转到下载页面
-    if (DOWNLOAD_URL) {
+    if (MAA_AGENT_DOWNLOAD_URL) {
       setTimeout(() => {
-        window.open(DOWNLOAD_URL, "_blank");
+        window.open(MAA_AGENT_DOWNLOAD_URL, "_blank");
       }, 1000);
     }
   };
@@ -433,7 +431,7 @@ export default function Home() {
                   {simulationComplete && (
                     <div className="mt-4 pt-4 border-t border-border/50">
                       <a 
-                        href={DOWNLOAD_URL || "#"} 
+                        href={MAA_AGENT_DOWNLOAD_URL || "#"} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="btn-primary w-full text-center inline-flex items-center justify-center gap-2"

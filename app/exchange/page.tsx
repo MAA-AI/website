@@ -4,14 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import en from "../../locales/en.json";
 import zh from "../../locales/zh.json";
+import { CLIENT_BACKEND } from "../requests/misc";
 
 type Locale = "en" | "zh";
 type Theme = "light" | "dark" | "system";
 
 const locales = { en, zh };
-
-// API 配置
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.example.com";
 
 interface ExchangeResult {
   original_cdk: string;
@@ -179,7 +177,7 @@ export default function ExchangePage() {
     setError("");
 
     try {
-      const response = await fetch(`${API_BASE_URL}/points/exchange?cdk=${encodeURIComponent(cdk.trim())}`, {
+      const response = await fetch(`${CLIENT_BACKEND}/api/billing/points/exchange?cdk=${encodeURIComponent(cdk.trim())}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
